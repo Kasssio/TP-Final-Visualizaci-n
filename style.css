@@ -1,0 +1,113 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+mate{
+    font-family:"Mozilla Text", sans-serif;
+    color: #B8BA47;
+    font-weight: bold;
+}
+
+body{
+    font-family:"Mozilla Text", sans-serif;
+    background:#FBFBF9;
+    color:#111;
+}
+
+h1,h2,h3{
+    font-family:"Mozilla Headline", sans-serif;
+    color:#4E7BA4;
+}
+
+h1{
+    font-size:5rem;
+    line-height:1;
+}
+
+h2{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+h3{
+    font-size:2rem;
+}
+
+p{
+    font-size:1.25rem;
+    line-height:1.7;
+}
+
+.chapter{
+    display:grid;
+    grid-template-columns:55% 45%;
+    min-height:100vh;
+}
+
+.sticky-visual{
+    position:sticky;
+    top:0;
+
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+}
+
+.placeholder{
+    width:100%;
+    height:85vh;
+
+    border:3px dashed #999;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    font-size:2rem;
+    font-family:"Mozilla Headline", sans-serif;
+
+    color:#777;
+}
+
+.placeholder span{
+    margin-top:15px;
+    font-size:1rem;
+}
+
+.hero-placeholder{
+    border:none;
+}
+
+.scroll-content{
+    padding-right:10vw;
+}
+
+.step{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    max-width:550px;
+}
+
+.step p{
+    margin-bottom:20px;
+}
+
+.center{
+    text-align:center;
+    align-items:center;
+}
+
+.final .step{
+    justify-content:center;
+}
