@@ -16,6 +16,12 @@ body{
     color:#111;
 }
 
+boxtitle{
+    font-family:"Mozilla Headline", sans-serif;
+    font-size: 2rem;
+    color:#fbfbf9;
+}
+
 h1,h2,h3{
     font-family:"Mozilla Headline", sans-serif;
     color:#4E7BA4;
@@ -94,7 +100,7 @@ p{
 
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:left;
 
     max-width:550px;
 }
