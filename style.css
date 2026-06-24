@@ -1,119 +1,677 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ========================================== */
+/* RESET Y VARIABLES DE IDENTIDAD VISUAL       */
+/* ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-mate{
-    font-family:"Mozilla Text", sans-serif;
-    color: #B8BA47;
+:root {
+    --blanco-limpio: #FFFFFF;
+    --celeste-patria: #6CACE4;
+    --celeste-sutil: #F0F6FC;
+    --celeste-oscuro: #2C4D6C;
+    --gris-fondo: #F7FAFC;
+    --texto-primario: #1E293B;
+    --texto-secundario: #64748B;
+    
+    /* Color de contraste para métricas y llamadas de atención */
+    --contraste-coral: #E65F2B; 
+    --borde-modular: rgba(108, 172, 228, 0.2);
+}
+
+body {
+    font-family: 'Mozilla Text', sans-serif;
+    background-color: var(--blanco-limpio);
+    color: var(--texto-primario);
+    line-height: 1.7;
+}
+
+/* TIPOGRAFÍAS */
+h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-total {
+    font-family: 'Mozilla Headline', sans-serif;
+    font-weight: 700;
+}
+
+/* PORTADA (HERO) */
+.hero-timeline {
+    height: 90vh;
+    background: linear-gradient(180deg, var(--celeste-sutil) 0%, var(--blanco-limpio) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.timeline-tag {
+    color: var(--celeste-patria);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.hero-timeline h1 {
+    font-size: 4.5rem;
+    color: var(--celeste-oscuro);
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-lead {
+    font-size: 1.3rem;
+    color: var(--texto-secundario);
+    margin-bottom: 40px;
+}
+
+.scroll-arrow {
+    font-size: 0.9rem;
+    color: var(--celeste-patria);
     font-weight: bold;
 }
 
-body{
-    font-family:"Mozilla Text", sans-serif;
-    background:#FBFBF9;
-    color:#111;
+/* ========================================== */
+/* CONTENEDOR MULTICOLUMNA DEL SCROLLYTELLING */
+/* ========================================== */
+.scrolly-wrapper {
+    display: flex;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    gap: 40px;
+    padding: 0 20px;
 }
 
-boxtitle{
-    font-family:"Mozilla Headline", sans-serif;
+/* COLUMNA IZQUIERDA: Bloques de Historia */
+.timeline-stories {
+    width: 45%;
+    position: relative;
+    padding-bottom: 30vh; /* Espacio extra al final para scroll holgado */
+}
+
+/* Eje vertical de la línea de tiempo */
+.timeline-axis-line {
+    position: absolute;
+    left: 15px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--celeste-sutil);
+}
+
+/* Bloques de hitos de tiempo */
+.timeline-step {
+    position: relative;
+    padding-left: 50px;
+    margin-bottom: 45vh; /* Amplia separación para forzar el scroll paso a paso */
+    opacity: 0.3;
+    transform: translateX(-10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.timeline-step.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-bullet {
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--blanco-limpio);
+    border: 3px solid var(--celeste-patria);
+    transition: background-color 0.3s, border-color 0.3s;
+    z-index: 2;
+}
+
+.timeline-step.active .timeline-bullet {
+    background-color: var(--contraste-coral);
+    border-color: var(--blanco-limpio);
+    box-shadow: 0 0 0 4px rgba(230, 95, 43, 0.2);
+}
+
+.time-marker {
+    font-size: 0.9rem;
+    color: var(--contraste-coral);
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.timeline-stories h2 {
     font-size: 2rem;
-    color:#fbfbf9;
+    color: var(--celeste-oscuro);
+    margin-bottom: 15px;
 }
 
-h1,h2,h3{
-    font-family:"Mozilla Headline", sans-serif;
-    color:#4E7BA4;
+.timeline-stories p {
+    font-size: 1.15rem;
+    color: var(--texto-primario);
+    margin-bottom: 15px;
 }
 
-h1{
-    font-size:5rem;
-    line-height:1;
+.timeline-stories strong {
+    color: var(--celeste-oscuro);
 }
 
-h2{
-    font-size:3rem;
-    margin-bottom:20px;
+/* COLUMNA DERECHA: Marco Fijo del Visor */
+.timeline-visuals {
+    width: 55%;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10vh;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-h3{
-    font-size:2rem;
+/* Contenedor centralizado interno de las tarjetas */
+.visual-sticky-frame {
+    width: 100%;
+    max-width: 520px;
+    height: 550px;
+    position: relative;
 }
 
-p{
-    font-size:1.25rem;
-    line-height:1.7;
+/* TARJETAS MODULARES CONMUTABLES */
+.modular-card {
+    position: absolute;
+    inset: 0;
+    background-color: var(--gris-fondo);
+    border: 1px solid var(--borde-modular);
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.96);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    z-index: 1;
 }
 
-.chapter{
-    display:grid;
-    grid-template-columns:55% 45%;
-    min-height:100vh;
+.modular-card.active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    z-index: 2;
+    background-color: var(--blanco-limpio);
+    box-shadow: 0 20px 40px rgba(44, 77, 108, 0.06);
 }
 
-.sticky-visual{
-    position:sticky;
-    top:0;
-
-    height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    padding:40px;
+.card-meta {
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px dashed var(--borde-modular);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.placeholder{
-    width:100%;
-    height:85vh;
-
-    border:3px dashed #999;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    font-size:2rem;
-    font-family:"Mozilla Headline", sans-serif;
-
-    color:#777;
+/* ========================================== */
+/* PLACEHOLDERS MODULARES PARA FLOURISH       */
+/* ========================================== */
+.flourish-placeholder-box {
+    flex: 1;
+    border: 2px dashed var(--celeste-patria);
+    background-color: var(--celeste-sutil);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    min-height: 280px;
 }
 
-.placeholder span{
-    margin-top:15px;
-    font-size:1rem;
+.placeholder-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-.hero-placeholder{
-    border:none;
+.placeholder-text {
+    font-family: 'Mozilla Headline', sans-serif;
+    font-size: 0.95rem;
+    color: var(--celeste-oscuro);
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.scroll-content{
-    padding-right:10vw;
+.placeholder-instruction {
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    max-width: 80%;
 }
 
-.step{
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:left;
-
-    max-width:550px;
+/* Variación sutil de color para la última sección */
+.flourish-placeholder-box.dangerous-zone {
+    border-color: #F87171;
+    background-color: #FEF2F2;
 }
 
-.step p{
-    margin-bottom:20px;
+/* COMPONENTES COMPLEMENTARIOS DENTRO DE LAS TARJETAS */
+.quick-stats-row {
+    display: flex;
+    gap: 15px;
 }
 
-.center{
-    text-align:center;
-    align-items:center;
+.q-stat {
+    flex: 1;
+    background-color: var(--gris-fondo);
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
 }
 
-.final .step{
-    justify-content:center;
+.q-stat span {
+    display: block;
+    color: var(--texto-secundario);
+    font-size: 0.75rem;
+}
+
+.q-stat strong {
+    font-size: 1.1rem;
+    color: var(--celeste-oscuro);
+}
+
+.highlight-metric-box {
+    background-color: var(--celeste-oscuro);
+    color: var(--blanco-limpio);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.metric-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    display: block;
+    opacity: 0.8;
+}
+
+.metric-value {
+    font-size: 1.8rem;
+    color: var(--contraste-coral);
+}
+
+/* BLOQUE DE DATOS PUROS (JUBILACIÓN) */
+.pure-data-block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.data-row-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gris-fondo);
+}
+
+.data-row-split .d-label {
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+}
+
+.data-row-split .d-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--texto-primario);
+}
+
+.data-row-split .d-value-highlight {
+    font-size: 1.3rem;
+    color: var(--celeste-patria);
+    font-weight: bold;
+}
+
+.data-row-split.main-split {
+    background-color: var(--celeste-sutil);
+    padding: 15px;
+    border-radius: 6px;
+    border-bottom: none;
+}
+
+.data-row-split.main-split .d-label {
+    color: var(--celeste-oscuro);
+    font-weight: bold;
+}
+
+.d-value-total {
+    font-size: 1.8rem;
+    color: var(--contraste-coral);
+}
+
+.longevity-badge {
+    background-color: #FEF2F2;
+    color: #EF4444;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* SECCIÓN DE CIERRE (EPÍLOGO) */
+.epilogue-footer {
+    background-color: var(--celeste-oscuro);
+    color: var(--blanco-limpio);
+    padding: 120px 20px;
+    text-align: center;
+}
+
+.epilogue-inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.epilogue-footer h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--celeste-patria);
+}
+
+.epilogue-footer p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* INTERFAZ ADAPTATIVA PARA MÓVILES */
+@media (max-width: 850px) {
+    .scrolly-wrapper {
+        flex-direction: column;
+    }
+    .timeline-stories {
+        width: 100%;
+        padding-bottom: 0;
+    }
+    .timeline-step {
+        margin-bottom: 80px;
+    }
+    .timeline-visuals {
+        width: 100%;
+        position: relative;
+        top: 0;
+        height: auto;
+        margin-bottom: 60px;
+    }
+    .visual-sticky-frame {
+        height: auto;
+    }
+    .modular-card {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        margin-bottom: 30px;
+        display: none;
+    }
+    .modular-card.active {
+        display: flex;
+    }
+}
+
+/* ========================================== */
+/* ESTILOS PARA LA INTRODUCCIÓN NARRATIVA     */
+/* ========================================== */
+
+/* --- PARTE 1: Bloque de Pantalla Completa --- */
+.intro-block-full {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    overflow: hidden;
+}
+
+/* El fondo modular gris que simula tu imagen de ancho completo */
+.bg-full-placeholder {
+    position: absolute;
+    inset: 0;
+    background-color: #E2E8F0; /* Color gris base */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    font-style: italic;
+    z-index: 1;
+    /* NOTA: Si querés usar una imagen real, borrá el color gris y agregá: */
+    /* background-image: url('tu-imagen.jpg'); background-size: cover; background-position: center; */
+}
+
+/* La caja celeste solicitada */
+.intro-celeste-box {
+    position: relative;
+    z-index: 2;
+    background-color: var(--celeste-patria);
+    color: var(--blanco-limpio);
+    padding: 45px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 25px 50px rgba(44, 77, 108, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.intro-celeste-box h2 {
+    color: var(--blanco-limpio);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.intro-celeste-box p {
+    font-size: 1.2rem;
+    color: var(--blanco-limpio);
+    opacity: 0.95;
+    margin-bottom: 15px;
+}
+
+.intro-celeste-box p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --- PARTE 2: Bloque Dividido (Patrones y Mate) --- */
+.intro-block-split {
+    display: flex;
+    max-width: 1300px;
+    margin: 0 auto;
+    min-height: 100vh;
+    align-items: center;
+    gap: 60px;
+    padding: 100px 20px;
+    background-color: var(--blanco-limpio); /* Vuelve al color base */
+}
+
+.intro-split-text {
+    width: 45%;
+}
+
+.intro-split-graphic {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Título y párrafos con el color celeste solicitado */
+.text-celeste-headline {
+    color: var(--celeste-patria);
+    font-size: 2.8rem;
+    margin-bottom: 25px;
+}
+
+.text-celeste-body {
+    color: var(--celeste-oscuro);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.text-celeste-body strong {
+    color: var(--contraste-coral); /* Resaltamos el dato del mate en coral */
+    font-weight: bold;
+}
+
+/* Caja de conclusión inferior (Cierre de la intro) */
+.intro-conclusion-box {
+    margin-top: 35px;
+    padding-top: 25px;
+    border-top: 2px solid var(--celeste-sutil);
+}
+
+.intro-conclusion-box p {
+    font-size: 1.15rem;
+    color: var(--texto-primario);
+    font-weight: 600;
+}
+
+/* Ajuste adaptativo para celulares de la introducción */
+@media (max-width: 850px) {
+    .intro-block-split {
+        flex-direction: column;
+        padding: 60px 20px;
+        gap: 40px;
+    }
+    .intro-split-text, .intro-split-graphic {
+        width: 100%;
+    }
+    .text-celeste-headline {
+        font-size: 2rem;
+    }
+}
+
+/* ========================================== */
+/* ESTILOS PARA LA REVELACIÓN DEL PERFIL      */
+/* ========================================== */
+
+.intro-profile-revelation {
+    background-color: var(--celeste-sutil); /* Fondo celeste claro para enmarcar el quiebre */
+    padding: 100px 20px;
+    border-bottom: 1px solid var(--borde-modular);
+}
+
+.revelation-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.revelation-tag {
+    color: var(--contraste-coral);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.revelation-inner h2 {
+    font-size: 2.8rem;
+    color: var(--celeste-oscuro);
+    margin-bottom: 20px;
+}
+
+.revelation-lead {
+    font-size: 1.25rem;
+    color: var(--texto-secundario);
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+}
+
+/* Grilla modular de 3 columnas para los pilares estadísticos */
+.profile-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.profile-data-card {
+    background-color: var(--blanco-limpio);
+    padding: 40px 25px;
+    border-radius: 14px;
+    border: 1px solid var(--borde-modular);
+    box-shadow: 0 4px 20px rgba(44, 77, 108, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+/* Efecto interactivo al pasar el mouse */
+.profile-data-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(44, 77, 108, 0.08);
+}
+
+.p-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.profile-data-card h3 {
+    font-size: 1.5rem;
+    color: var(--celeste-oscuro);
+    margin-bottom: 15px;
+}
+
+.profile-data-card p {
+    font-size: 1rem;
+    color: var(--texto-primario);
+    line-height: 1.6;
+}
+
+.profile-data-card strong {
+    color: var(--contraste-coral);
+    font-weight: 700;
+}
+
+/* Bloque inferior de cierre del perfil */
+.revelation-closure {
+    font-size: 1.3rem;
+    color: var(--texto-primario);
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+.revelation-closure strong {
+    color: var(--contraste-coral);
+    display: block;
+    margin-top: 15px;
+    font-size: 1.6rem;
+    font-family: 'Mozilla Headline', sans-serif;
+}
+
+/* Adaptación fluida para pantallas de celulares */
+@media (max-width: 850px) {
+    .profile-grid-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .revelation-inner h2 {
+        font-size: 2rem;
+    }
 }
