@@ -6,9 +6,9 @@
     <title>María Belén: Línea de Tiempo del Argentino Promedio</title>
     
     <!-- Fuentes solicitadas -->
-    <link href="https://fonts.cdnfonts.com/css/mozilla-text" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/mozilla-headline" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@300;400;500;600;700&family=Mozilla+Text:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,10 +16,10 @@
     <!-- PORTADA DE LA BIOGRAFÍA -->
     <header class="hero-timeline">
         <div class="hero-content">
-            <span class="timeline-tag">Biografía Estadística</span>
-            <h1>María Belén</h1>
-            <p class="hero-lead">El viaje cronológico a través de la vida de una argentina promedio.</p>
-            <div class="scroll-arrow">Comenzar recorrido cronológico ↓</div>
+            <span class="timeline-tag">Trabajo práctico final Visualización de Datos</span>
+            <h1>Construyendo al argentino promedio</h1>
+            <p class="hero-lead">Sigamos el recorrido cronológico de las estadísticas que definen a nuestro argentino promedio.</p>
+            <div class="scroll-arrow">Scrolleá para empezar ↓</div>
         </div>
     </header>
 
@@ -30,9 +30,7 @@
     <!-- PARTE 1: La caja celeste sobre la imagen de fondo completo -->
     <section class="intro-block-full">
         <!-- PLACEHOLDER DE IMAGEN DE FONDO: Podés reemplazar este div por una etiqueta <img> o usar un background-image en CSS -->
-        <div class="bg-full-placeholder">
-            <span>[Placeholder Modular: Imagen Ocupa Todo el Ancho (Ej: Multitud de personas o mapa difuminado)]</span>
-        </div>
+        <img src="otrafoto.png" alt="Imagen de fondo conceptual" class="intro-background-image">
         
         <!-- Caja Celeste Flotante -->
         <div class="intro-celeste-box">
@@ -46,7 +44,7 @@
     <section class="intro-block-split">
         <div class="intro-split-text">
             <h2 class="text-celeste-headline">Pero siempre hay patrones.</h2>
-            <p class="text-celeste-body">Algunas cosas siempre aparecen una y otra vez. Por ejemplo, <strong>9 de cada 10 argentinos toma mate</strong>.</p>
+            <p class="text-celeste-body">Algunas cosas siempre aparecen una y otra vez. Por ejemplo, <strong style="font-size: 1.4rem; color: #B8BA47">9 de cada 10 argentinos toman mate</strong>.</p>
             <p class="text-celeste-body">Si tuviéramos que imaginar a un argentino, seguramente tomaría mate.</p>
             
             <div class="intro-conclusion-box">
@@ -55,12 +53,7 @@
         </div>
         
         <div class="intro-split-graphic">
-            <!-- PLACEHOLDER MODULAR: Ideal para pegar el gráfico de Flourish del 90% del Mate -->
-            <div class="flourish-placeholder-box">
-                <div class="placeholder-icon">🧉</div>
-                <p class="placeholder-text">PLACEHOLDER GRÁFICO: ESTADÍSTICA DEL MATE</p>
-                <span class="placeholder-instruction">[Pegá acá el código embed de Flourish que demuestre que el 9 de cada 10 argentinos consume mate]</span>
-            </div>
+            <img src="graficomate.png" alt="Gráfico conceptual de mate" class="intro-graphic-image" width="50%">
         </div>
     </section>
 
@@ -72,34 +65,43 @@
             <span class="revelation-tag">De los datos a la identidad</span>
             <h2>Cruzando las variables de un país</h2>
             <p class="revelation-lead">
-                Para darle un rostro a nuestro argentino promedio, aplicamos la lógica de las mayorías a las bases demográficas de los últimos censos nacionales. Los datos arrojaron tres verdades indiscutibles:
+                Para darle un rostro a nuestro argentino promedio, aplicamos la lógica de las mayorías a los últimos censos del INDEC. Los datos arrojaron tres datos importantes:
             </p>
             
             <div class="profile-grid-cards">
                 <!-- Tarjeta 1: Género -->
                 <div class="profile-data-card">
-                    <div class="p-card-icon">👩</div>
                     <h3>Una Mujer</h3>
-                    <p>Al analizar las pirámides poblacionales, las curvas demográficas muestran una clara **mayoría femenina**. Por eso, estadísticamente, el argentino promedio es una mujer.</p>
+                    <p>Al analizar las pirámides poblacionales, las curvas demográficas muestran que hay 96 hombres por cada 100 mujeres. Por eso, estadísticamente, el argentino promedio es una mujer.</p>
+                    <div class="embed-with-source">
+                        <div class="flourish-embed flourish-pictogram" data-src="visualisation/29488757"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29488757/thumbnail" width="100%" alt="pictogram visualization" /></noscript></div>
+                        <h6>Fuente: <a href="https://biblioteca.indec.gob.ar/bases/minde/1c1991ser_a3.pdf">INDEC 1991</a></h6>
+                    </div>
                 </div>
 
                 <!-- Tarjeta 2: Edad Mediana -->
                 <div class="profile-data-card">
-                    <div class="p-card-icon">⏳</div>
                     <h3>32 Años</h3>
-                    <p>La **edad mediana** exacta de la población es de 32 años (el punto justo que divide al país en dos mitades iguales). Esto significa que nuestra mujer promedio nació en **1994**.</p>
+                    <p>La <b>edad mediana</b> exacta de la población es de 32 años (el punto justo que divide al país en dos mitades iguales). Esto significa que nuestra mujer promedio nació en <b>1994</b>.</p>
+                    <div class="embed-with-source">
+                        <div class="flourish-embed flourish-chart" data-src="visualisation/29499634"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29499634/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+                        <h6> Fuente: <a href="https://www.indec.gob.ar/indec/web/institucional-indec-indicadoresdemograficos">INDEC 2022</a></h6>
+                    </div>
                 </div>
 
                 <!-- Tarjeta 3: El Nombre -->
                 <div class="profile-data-card">
-                    <div class="p-card-icon">🆔</div>
                     <h3>María Belén</h3>
-                    <p>Al cruzar los registros oficiales del Registro Nacional de las Personas, la combinación de **María Belén** se corona como el nombre de mujer más inscrito y popular de ese año.</p>
+                    <p>Al cruzar los registros oficiales del RENAPER (Registro Nacional de las Personas), la combinación de <b>María Belén</b> se corona como el nombre de mujer más inscrito y popular de ese año.</p>
+                    <div class="embed-with-source">
+                        <div class="flourish-embed flourish-hierarchy" data-src="visualisation/29476552"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29476552/thumbnail" width="100%" alt="hierarchy visualization" /></noscript></div>
+                        <h6> Fuente: <a href="https://nombres.datos.gob.ar/#seccion1, datos.gob.ar">datos.gob.ar</a></h6>
+                    </div>
                 </div>
             </div>
 
             <div class="revelation-closure">
-                <p>Es a partir de esta intersección matemática que la abstracción toma forma y nombre. <strong>Esta es la línea de tiempo de María Belén.</strong></p>
+                <p>Es a partir de este cruce que se le puede dar forma al viaje del argentino promedio. <strong style="color: #6CACE4">Esta es la vida de María Belén.</strong></p>
             </div>
         </div>
     </section>
@@ -107,6 +109,7 @@
     <!-- FIN DE LA INTRODUCCIÓN (AQUÍ SIGUE EL CONTENEDOR DE MARÍA) -->
     <!-- ========================================== -->
     <!-- CONTENEDOR DEL SCROLLYTELLING -->
+    <br><br>
     <div class="scrolly-wrapper">
         
         <!-- COLUMNA IZQUIERDA: La Línea de Tiempo Crónica (Texto) -->
@@ -117,8 +120,8 @@
             <article class="timeline-step active" data-step="1">
                 <div class="timeline-bullet"></div>
                 <div class="time-marker">1994 • El Origen</div>
-                <h2>Nacimiento en la Provincia</h2>
-                <p>María Belén nace en la Provincia de Buenos Aires. Su nombre y apellido representan la combinación más frecuente en las partidas de nacimiento del país. Llega a una familia típica de <strong>clase media</strong>, donde crecerá compartiendo el hogar y los recursos con sus <strong>2 hermanos</strong>.</p>
+                <h2>Nacimiento en PBA</h2>
+                <p class="text-celeste-body">María Belén nace en la Provincia de Buenos Aires. Su nombre y apellido representan la combinación más frecuente en las partidas de nacimiento del país. Llega a una familia típica de <strong style="color: #4E7BA4">clase media</strong>, donde crecerá compartiendo el hogar y los recursos con sus <strong style="color: #4E7BA4">2 hermanos</strong>.</p>
             </article>
 
             <!-- Hito 2: 2000-2012 (Educación Básica y Hobbies) -->
@@ -170,14 +173,9 @@
                 <!-- MODULO 1: Gráfico u Hoja de Datos de Nacimiento -->
                 <div class="modular-card active" id="card-step-1">
                     <div class="card-meta">Módulo Visual 01 // Demografía Inicial</div>
-                    
-                    <!-- PLACEHOLDER MODULAR: Acá podés pegar un gráfico de Flourish (ej. distribución de clases o hermanos) -->
-                    <div class="flourish-placeholder-box">
-                        <div class="placeholder-icon">📊</div>
-                        <p class="placeholder-text">PLACEHOLDER GRÁFICO FLOURISH / IMAGEN</p>
-                        <span class="placeholder-instruction">[Pegá aquí el código embed de Flourish o un contenedor visual para el año 1994]</span>
-                    </div>
-
+                    <h3>Nacimientos por provincia, 1994</h3>
+                    <div class="flourish-embed flourish-map" data-src="visualisation/29465195" style="width: 200px; max-width: 200px; margin: 0 auto; display: block;"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/29465195/thumbnail" width="100%" alt="map visualization" /></noscript></div>
+                    <h6>Fuente: <a href="https://datos.gob.ar/dataset/salud-serie-historica-nacimientos-ocurridos-argentina-por-jurisdiccion/archivo/salud_95cfbd36-d912-46a4-9dfa-213e4bdbdc53">Datos de Salud de Argentina</a></h6>
                     <div class="quick-stats-row">
                         <div class="q-stat"><span>Origen</span><strong>PBA</strong></div>
                         <div class="q-stat"><span>Hermanos</span><strong>2</strong></div>

@@ -6,18 +6,20 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.flourish-credit {
+    display: none !important;
+}
 :root {
     --blanco-limpio: #FFFFFF;
     --celeste-patria: #6CACE4;
     --celeste-sutil: #F0F6FC;
-    --celeste-oscuro: #2C4D6C;
+    --celeste-oscuro: #2C4D6C; 
     --gris-fondo: #F7FAFC;
     --texto-primario: #1E293B;
     --texto-secundario: #64748B;
     
     /* Color de contraste para métricas y llamadas de atención */
-    --contraste-coral: #E65F2B; 
+    --contraste-coral: #FFB81C; 
     --borde-modular: rgba(108, 172, 228, 0.2);
 }
 
@@ -93,14 +95,15 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
 .timeline-stories {
     width: 45%;
     position: relative;
-    padding-bottom: 30vh; /* Espacio extra al final para scroll holgado */
+    padding-top: 40px;       /* ◄ AGREGADO: Para que empareje el inicio de la tarjeta */
+    padding-bottom: 30vh;
 }
 
 /* Eje vertical de la línea de tiempo */
 .timeline-axis-line {
     position: absolute;
     left: 15px;
-    top: 40px;
+    top: 50px;               /* ◄ AJUSTADO: Se mueve sutilmente para calzar con el primer bullet */
     bottom: 0;
     width: 2px;
     background-color: var(--celeste-sutil);
@@ -172,15 +175,16 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     top: 10vh;
     height: 80vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* ◄ CAMBIADO: De center a flex-start */
     justify-content: center;
+    padding-top: 40px;       /* ◄ AGREGADO: Espacio de cortesía en el techo */
 }
 
 /* Contenedor centralizado interno de las tarjetas */
 .visual-sticky-frame {
     width: 100%;
     max-width: 520px;
-    height: 550px;
+    min-height: 700px; /* ◄ MODIFICADO: De 550px a 700px para dar aire al mapa */
     position: relative;
 }
 
@@ -200,6 +204,8 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     transform: scale(0.96);
     transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
     z-index: 1;
+    height: auto;
+    min-height: 450px;
 }
 
 .modular-card.active {
@@ -226,17 +232,19 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
 /* ========================================== */
 .flourish-placeholder-box {
     flex: 1;
-    border: 2px dashed var(--celeste-patria);
+    border: 2px dashed var(--celeste-patria); /* Podés borrar el borde si ya pusiste el código */
     background-color: var(--celeste-sutil);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     margin-bottom: 15px;
     min-height: 280px;
+    max-height: 450px; /* ◄ AGREGADO: Un techo para que el gráfico no crezca infinitamente */
+    overflow: hidden;   /* ◄ AGREGADO: Corta cualquier imperfección que intente salir */
 }
 
 .placeholder-icon {
@@ -674,4 +682,28 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     .revelation-inner h2 {
         font-size: 2rem;
     }
+}
+
+.flourish-embed, 
+.flourish-placeholder-box iframe {
+    max-height: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+}
+
+.card-source {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--texto-secundario);
+    margin-top: 15px;
+    text-align: center;
+}
+
+.card-source a {
+    color: var(--celeste-patria);
+    text-decoration: underline;
+}
+
+.card-source a:hover {
+    color: var(--celeste-oscuro);
 }
