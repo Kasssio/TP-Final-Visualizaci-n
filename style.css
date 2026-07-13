@@ -175,7 +175,7 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     top: 10vh;
     height: 80vh;
     display: flex;
-    align-items: flex-start; /* ◄ CAMBIADO: De center a flex-start */
+    align-items: center; /* ◄ MODIFICADO: vuelve a centrar verticalmente la tarjeta */
     justify-content: center;
     padding-top: 40px;       /* ◄ AGREGADO: Espacio de cortesía en el techo */
 }
@@ -184,8 +184,78 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
 .visual-sticky-frame {
     width: 100%;
     max-width: 520px;
-    min-height: 700px; /* ◄ MODIFICADO: De 550px a 700px para dar aire al mapa */
+    min-height: 450px; /* ◄ MODIFICADO: piso bajo, cada tarjeta define su propia altura */
     position: relative;
+}
+
+/* ========================================== */
+/* PAUSA DEL SCROLLYTELLING                    */
+/* Sección a pantalla completa, fuera del layout de dos columnas, */
+/* para momentos de énfasis (imagen de fondo + texto centrado encima) */
+/* ========================================== */
+.story-pause {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    margin: 10vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Velo oscuro sobre la imagen para que el texto blanco sea legible */
+.story-pause::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.6) 100%);
+}
+
+.story-pause-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    text-align: center;
+    color: var(--blanco-limpio);
+    padding: 0 30px;
+}
+
+.story-pause-tag {
+    display: inline-block;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--contraste-coral);
+    margin-bottom: 15px;
+}
+
+.story-pause-content h2 {
+    font-size: 2.75rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.story-pause-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+    .story-pause {
+        min-height: 60vh;
+        margin: 6vh 0;
+    }
+    .story-pause-content h2 {
+        font-size: 2rem;
+    }
+    .story-pause-content p {
+        font-size: 1.05rem;
+    }
 }
 
 /* TARJETAS MODULARES CONMUTABLES */
@@ -208,7 +278,12 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     min-height: 450px;
 }
 
+#card-step-1 {
+    min-height: 700px; /* ◄ AGREGADO: el mapa necesita más aire, ya no se lo pide a todas las tarjetas */
+}
+
 .modular-card.active {
+    position: relative; /* ◄ AGREGADO: saca la tarjeta activa del inset:0 absoluto */
     opacity: 1;
     visibility: visible;
     transform: scale(1);
@@ -684,7 +759,18 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
     }
 }
 
-.flourish-embed, 
+.flourish-embed {
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+#card-step-1 .flourish-embed {
+    width: 200px !important;
+    max-width: 200px !important;
+    margin: 0 auto;
+    display: block;
+}
+
 .flourish-placeholder-box iframe {
     max-height: 100% !important;
     max-width: 100% !important;
