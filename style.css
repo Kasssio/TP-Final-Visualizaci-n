@@ -444,8 +444,8 @@ h1, h2, h3, .time-marker, .timeline-tag, .card-meta, .metric-value, .d-value-tot
 }
 
 .longevity-badge {
-    background-color: #FEF2F2;
-    color: #EF4444;
+    background-color: rgba(255, 223, 127, 0.116);
+    color: #ffb81c;
     padding: 8px;
     border-radius: 6px;
     text-align: center;
